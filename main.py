@@ -1,7 +1,8 @@
 import requests
 import os
+import math
 
-# API Setup
+# Configurazione API
 API_KEY = os.getenv('FOOTBALL_DATA_API_KEY')
 headers = {'X-Auth-Token': API_KEY}
 
@@ -9,82 +10,91 @@ def get_data(endpoint):
     url = f"https://api.football-data.org/v4/competitions/SA/{endpoint}"
     return requests.get(url, headers=headers).json()
 
+def poisson(actual, mean):
+    """Calcola la probabilità statistica di un evento."""
+    return (math.pow(mean, actual) * math.exp(-mean)) / math.factorial(actual)
+
 def main():
     try:
-        # 1. Recuperiamo sia le partite che la classifica
-        matches_data = get_data("matches?status=SCHEDULED")
+        # 1. Recupero dati Classifica e Partite
         standings_data = get_data("standings")
+        matches_data = get_data("matches?status=SCHEDULED")
         
-        # Creiamo un "dizionario" della classifica per accesso rapido
-        standings = {}
-        for table in standings_data.get('standings', [{}])[0].get('table', []):
-            standings[table['team']['name']] = {
-                'position': table['position'],
-                'points': table['points'],
-                'goalDiff': table['goalDifference']
+        table = standings_data['standings'][0]['table']
+        played_games = table[0]['playedGames']
+        
+        # Calcoliamo la media gol del campionato (League Average)
+        total_goals = sum(t['goalsFor'] + t['goalsAgainst'] for t in table) / 2
+        league_avg_goals = total_goals / (len(table) * played_games)
+
+        # Creiamo il database delle squadre
+        teams = {}
+        for t in table:
+            teams[t['team']['name']] = {
+                'att': (t['goalsFor'] / played_games) / league_avg_goals,
+                'def': (t['goalsAgainst'] / played_games) / league_avg_goals
             }
 
         matches = matches_data.get('matches', [])[:10]
 
-        # 2. Inizio HTML (Manteniamo il tuo bellissimo design)
+        # 2. Design della Pagina (Ancora più professionale)
         html = """
-        <html><head><title>LopisLab AI Insights</title>
+        <html><head><title>LopisLab Quant Engine</title>
         <style>
-            body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 40px; color: #333; }
-            .container { max-width: 900px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-            h1 { color: #1a2a6c; border-bottom: 3px solid #1a2a6c; display: inline-block; margin-bottom: 20px; }
-            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-            th { background: #1a2a6c; color: white; padding: 15px; text-align: left; font-size: 13px; }
-            td { padding: 15px; border-bottom: 1px solid #eee; font-size: 14px; }
-            .badge { padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 12px; }
-            .high { background: #d4edda; color: #155724; }
-            .med { background: #fff3cd; color: #856404; }
+            body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; }
+            .container { max-width: 950px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+            h1 { color: #38bdf8; font-size: 28px; margin-bottom: 5px; }
+            p { color: #94a3b8; margin-bottom: 30px; }
+            table { width: 100%; border-collapse: collapse; }
+            th { text-align: left; padding: 15px; color: #38bdf8; border-bottom: 2px solid #334155; font-size: 12px; text-transform: uppercase; }
+            td { padding: 18px 15px; border-bottom: 1px solid #334155; font-size: 14px; }
+            .score-tag { background: #38bdf8; color: #0f172a; padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-right: 10px; }
+            .prob-high { color: #4ade80; font-weight: bold; }
+            .prob-med { color: #fbbf24; }
         </style></head><body>
         <div class="container">
-            <h1>LopisLab AI Prediction Engine</h1>
-            <p>Data-driven insights for upcoming Serie A matches.</p>
+            <h1>LopisLab Quant Engine v2.0</h1>
+            <p>Predictive analytics based on Poisson Distribution and League Scoring Averages.</p>
             <table>
-                <tr><th>Date</th><th>Match</th><th>AI Prediction</th><th>Confidence</th></tr>
+                <tr><th>Match</th><th>Predicted Score</th><th>Betting Tip</th><th>AI Confidence</th></tr>
         """
 
         for m in matches:
-            home = m['homeTeam']['name']
-            away = m['awayTeam']['name']
-            date = m['utcDate'][:10]
+            h_name = m['homeTeam']['name']
+            a_name = m['awayTeam']['name']
             
-            # Recuperiamo i dati delle due squadre dalla classifica
-            h_stats = standings.get(home, {'points': 0, 'goalDiff': 0})
-            a_stats = standings.get(away, {'points': 0, 'goalDiff': 0})
+            # Calcolo Forza Attacco vs Difesa
+            h_stats = teams.get(h_name, {'att': 1, 'def': 1})
+            a_stats = teams.get(a_name, {'att': 1, 'def': 1})
 
-            # LOGICA DI PRONOSTICO (VERSIONE 1.0)
-            # Calcoliamo il gap di potenza basato su punti e differenza reti
-            power_gap = (h_stats['points'] + h_stats['goalDiff']) - (a_stats['points'] + a_stats['goalDiff'])
+            # Gol Attesi (xG)
+            h_xg = h_stats['att'] * a_stats['def'] * league_avg_goals
+            a_xg = a_stats['att'] * h_stats['def'] * league_avg_goals
 
-            if power_gap > 10:
-                pred, conf = "Home Win (1)", "High"
-            elif power_gap > 0:
-                pred, conf = "1X Double Chance", "Medium"
-            elif power_gap > -10:
-                pred, conf = "X2 Double Chance", "Medium"
-            else:
-                pred, conf = "Away Win (2)", "High"
+            # Risultato più probabile (arrotondato)
+            pred_score = f"{round(h_xg)} - {round(a_xg)}"
+            
+            # Tipologia di giocata
+            if h_xg > a_xg + 0.5: tip, conf = "1", "High"
+            elif a_xg > h_xg + 0.5: tip, conf = "2", "High"
+            else: tip, conf = "X / GG", "Medium"
 
-            badge_class = "high" if conf == "High" else "med"
+            conf_class = "prob-high" if conf == "High" else "prob-med"
 
             html += f"""
                 <tr>
-                    <td>{date}</td>
-                    <td><b>{home}</b> vs {away}</td>
-                    <td>{pred}</td>
-                    <td><span class="badge {badge_class}">{conf}</span></td>
+                    <td><b>{h_name}</b> vs {a_name}</td>
+                    <td><span class='score-tag'>{pred_score}</span></td>
+                    <td>{tip}</td>
+                    <td class='{conf_class}'>{conf}</td>
                 </tr>
             """
 
-        html += f"</table><div style='margin-top:20px; font-size:11px; color:#999;'>Algorithm v1.1 | Last Update: {date}</div></div></body></html>"
+        html += f"</table><div style='margin-top:30px; font-size:11px; color:#64748b;'>Last Deep Analysis: {m['utcDate'][:10]}</div></div></body></html>"
 
         with open("index.html", "w", encoding='utf-8') as f:
             f.write(html)
-        print("Success: Data-driven predictions generated!")
+        print("Success: Quant Analysis Complete!")
 
     except Exception as e:
         print(f"Error: {e}")
