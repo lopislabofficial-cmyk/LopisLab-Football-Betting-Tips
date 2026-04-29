@@ -1,144 +1,94 @@
 import requests
 import os
 
-# Recuperiamo la tua chiave segreta
+# API Setup
 API_KEY = os.getenv('FOOTBALL_DATA_API_KEY')
 headers = {'X-Auth-Token': API_KEY}
 
+def get_data(endpoint):
+    url = f"https://api.football-data.org/v4/competitions/SA/{endpoint}"
+    return requests.get(url, headers=headers).json()
+
 def main():
     try:
-        # 1. Recupero dati dalla Serie A
-        url = "https://api.football-data.org/v4/competitions/SA/matches?status=SCHEDULED"
-        response = requests.get(url, headers=headers)
-        data = response.json()
+        # 1. Recuperiamo sia le partite che la classifica
+        matches_data = get_data("matches?status=SCHEDULED")
+        standings_data = get_data("standings")
+        
+        # Creiamo un "dizionario" della classifica per accesso rapido
+        standings = {}
+        for table in standings_data.get('standings', [{}])[0].get('table', []):
+            standings[table['team']['name']] = {
+                'position': table['position'],
+                'points': table['points'],
+                'goalDiff': table['goalDifference']
+            }
 
-        # Prendiamo le prime 10 partite
-        matches = data.get('matches', [])[:10] 
+        matches = matches_data.get('matches', [])[:10]
 
-        # 2. Costruzione della pagina HTML con un design professionale
+        # 2. Inizio HTML (Manteniamo il tuo bellissimo design)
         html = """
-        <html>
-        <head>
-            <title>LopisLab Football Insights</title>
-            <style>
-                body {
-                    font-family: 'Segoe UI', Arial, sans-serif; 
-                    background-color: #f4f7f6; 
-                    margin: 0; 
-                    padding: 40px;
-                    color: #333;
-                }
-                .container {
-                    max-width: 900px;
-                    margin: 0 auto;
-                    background: white;
-                    padding: 20px;
-                    border-radius: 12px;
-                    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-                }
-                h1 {
-                    color: #1a2a6c;
-                    border-bottom: 2px solid #1a2a6c;
-                    padding-bottom: 10px;
-                    margin-bottom: 5px;
-                }
-                h2 {
-                    color: #555;
-                    font-weight: 400;
-                    margin-bottom: 30px;
-                }
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-                th {
-                    background-color: #1a2a6c;
-                    color: white;
-                    text-transform: uppercase;
-                    font-size: 12px;
-                    letter-spacing: 1px;
-                    padding: 15px;
-                    text-align: left;
-                }
-                td {
-                    padding: 15px;
-                    border-bottom: 1px solid #eee;
-                }
-                tr:hover {
-                    background-color: #f9f9f9;
-                }
-                .prediction {
-                    font-weight: bold;
-                    color: #27ae60;
-                }
-                .footer {
-                    margin-top: 20px;
-                    font-size: 12px;
-                    color: #999;
-                    text-align: right;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>LopisLab - Football Betting Tips</h1>
-                <h2>Upcoming Serie A Matches</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Match</th>
-                            <th>Prediction</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <html><head><title>LopisLab AI Insights</title>
+        <style>
+            body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 40px; color: #333; }
+            .container { max-width: 900px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+            h1 { color: #1a2a6c; border-bottom: 3px solid #1a2a6c; display: inline-block; margin-bottom: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th { background: #1a2a6c; color: white; padding: 15px; text-align: left; font-size: 13px; }
+            td { padding: 15px; border-bottom: 1px solid #eee; font-size: 14px; }
+            .badge { padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 12px; }
+            .high { background: #d4edda; color: #155724; }
+            .med { background: #fff3cd; color: #856404; }
+        </style></head><body>
+        <div class="container">
+            <h1>LopisLab AI Prediction Engine</h1>
+            <p>Data-driven insights for upcoming Serie A matches.</p>
+            <table>
+                <tr><th>Date</th><th>Match</th><th>AI Prediction</th><th>Confidence</th></tr>
         """
 
-        if not matches:
-            html += "<tr><td colspan='3' style='text-align:center;'>No matches scheduled at the moment.</td></tr>"
+        for m in matches:
+            home = m['homeTeam']['name']
+            away = m['awayTeam']['name']
+            date = m['utcDate'][:10]
+            
+            # Recuperiamo i dati delle due squadre dalla classifica
+            h_stats = standings.get(home, {'points': 0, 'goalDiff': 0})
+            a_stats = standings.get(away, {'points': 0, 'goalDiff': 0})
 
-        # 3. Ciclo per ogni partita
-        for match in matches:
-            home_team = match['homeTeam']['name']
-            away_team = match['awayTeam']['name']
-            date = match['utcDate'][:10]
-            
-            # Qui applicheremo la formula di Poisson. 
-            # Per ora usiamo un'indicazione basata sull'ID squadra (temporaneo)
-            if (match['homeTeam']['id'] % 2 == 0):
-                prediction = "1X (High Prob.)"
+            # LOGICA DI PRONOSTICO (VERSIONE 1.0)
+            # Calcoliamo il gap di potenza basato su punti e differenza reti
+            power_gap = (h_stats['points'] + h_stats['goalDiff']) - (a_stats['points'] + a_stats['goalDiff'])
+
+            if power_gap > 10:
+                pred, conf = "Home Win (1)", "High"
+            elif power_gap > 0:
+                pred, conf = "1X Double Chance", "Medium"
+            elif power_gap > -10:
+                pred, conf = "X2 Double Chance", "Medium"
             else:
-                prediction = "X2 (Medium Prob.)"
-            
+                pred, conf = "Away Win (2)", "High"
+
+            badge_class = "high" if conf == "High" else "med"
+
             html += f"""
                 <tr>
                     <td>{date}</td>
-                    <td>{home_team} vs {away_team}</td>
-                    <td class="prediction">{prediction}</td>
+                    <td><b>{home}</b> vs {away}</td>
+                    <td>{pred}</td>
+                    <td><span class="badge {badge_class}">{conf}</span></td>
                 </tr>
             """
 
-        # 4. Chiusura HTML
-        html += f"""
-                    </tbody>
-                </table>
-                <div class="footer">
-                    Last Update: {date if matches else 'N/A'} | Powered by LopisLab Algorithm
-                </div>
-            </div>
-        </body>
-        </html>
-        """
+        html += f"</table><div style='margin-top:20px; font-size:11px; color:#999;'>Algorithm v1.1 | Last Update: {date}</div></div></body></html>"
 
-        # Scrittura del file index.html
         with open("index.html", "w", encoding='utf-8') as f:
             f.write(html)
-        print("Success: Professional index.html generated!")
+        print("Success: Data-driven predictions generated!")
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"Error: {e}")
         exit(1)
 
 if __name__ == "__main__":
-    main()
     main()
