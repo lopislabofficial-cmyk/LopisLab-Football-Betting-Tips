@@ -2,7 +2,7 @@ import requests
 import os
 import math
 
-# Configurazione API
+# API Setup
 API_KEY = os.getenv('FOOTBALL_DATA_API_KEY')
 headers = {'X-Auth-Token': API_KEY}
 
@@ -10,95 +10,98 @@ def get_data(endpoint):
     url = f"https://api.football-data.org/v4/competitions/SA/{endpoint}"
     return requests.get(url, headers=headers).json()
 
-def poisson(actual, mean):
-    """Calcola la probabilità statistica di un evento."""
-    return (math.pow(mean, actual) * math.exp(-mean)) / math.factorial(actual)
+def poisson_prob(k, lamb):
+    """Calcola la probabilità di segnare esattamente k gol con una media lamb."""
+    return (math.pow(lamb, k) * math.exp(-lamb)) / math.factorial(k)
 
 def main():
     try:
-        # 1. Recupero dati Classifica e Partite
+        # 1. Recupero dati
         standings_data = get_data("standings")
         matches_data = get_data("matches?status=SCHEDULED")
         
         table = standings_data['standings'][0]['table']
-        played_games = table[0]['playedGames']
-        
-        # Calcoliamo la media gol del campionato (League Average)
-        total_goals = sum(t['goalsFor'] + t['goalsAgainst'] for t in table) / 2
-        league_avg_goals = total_goals / (len(table) * played_games)
+        played = table[0]['playedGames']
+        total_g = sum(t['goalsFor'] + t['goalsAgainst'] for t in table) / 2
+        l_avg = total_g / (len(table) * played)
 
-        # Creiamo il database delle squadre
-        teams = {}
-        for t in table:
-            teams[t['team']['name']] = {
-                'att': (t['goalsFor'] / played_games) / league_avg_goals,
-                'def': (t['goalsAgainst'] / played_games) / league_avg_goals
-            }
+        teams = {t['team']['name']: {
+            'att': (t['goalsFor'] / played) / l_avg,
+            'def': (t['goalsAgainst'] / played) / l_avg
+        } for t in table}
 
-        matches = matches_data.get('matches', [])[:10]
+        matches = matches_data.get('matches', [])[:12]
 
-        # 2. Design della Pagina (Ancora più professionale)
+        # 2. HTML Design (Professional Dark Mode)
         html = """
-        <html><head><title>LopisLab Quant Engine</title>
+        <html><head><title>LopisLab Pro Insights</title>
         <style>
-            body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; }
-            .container { max-width: 950px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-            h1 { color: #38bdf8; font-size: 28px; margin-bottom: 5px; }
-            p { color: #94a3b8; margin-bottom: 30px; }
-            table { width: 100%; border-collapse: collapse; }
-            th { text-align: left; padding: 15px; color: #38bdf8; border-bottom: 2px solid #334155; font-size: 12px; text-transform: uppercase; }
-            td { padding: 18px 15px; border-bottom: 1px solid #334155; font-size: 14px; }
-            .score-tag { background: #38bdf8; color: #0f172a; padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-right: 10px; }
-            .prob-high { color: #4ade80; font-weight: bold; }
-            .prob-med { color: #fbbf24; }
+            body { font-family: 'Inter', -apple-system, sans-serif; background: #0b0e14; color: #e2e8f0; padding: 30px; line-height: 1.6; }
+            .container { max-width: 1100px; margin: 0 auto; }
+            .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 30px; border-radius: 20px; border-left: 5px solid #38bdf8; margin-bottom: 30px; }
+            h1 { color: #38bdf8; margin: 0; font-size: 28px; }
+            .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+            .match-card { background: #1e293b; padding: 20px; border-radius: 15px; border: 1px solid #334155; transition: transform 0.2s; }
+            .match-card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+            .teams { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; }
+            .badge { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+            .b-win { background: #064e3b; color: #4ade80; }
+            .b-draw { background: #451a03; color: #fbbf24; }
+            .stats-row { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; margin-top: 10px; padding-top: 10px; border-top: 1px solid #334155; }
+            .val { color: #f8fafc; font-weight: bold; }
         </style></head><body>
         <div class="container">
-            <h1>LopisLab Quant Engine v2.0</h1>
-            <p>Predictive analytics based on Poisson Distribution and League Scoring Averages.</p>
-            <table>
-                <tr><th>Match</th><th>Predicted Score</th><th>Betting Tip</th><th>AI Confidence</th></tr>
+            <div class="header">
+                <h1>LopisLab Predictive Engine v3.0</h1>
+                <p>Advanced Poisson Analytics & Goal Probability Distribution</p>
+            </div>
+            <div class="card-grid">
         """
 
         for m in matches:
-            h_name = m['homeTeam']['name']
-            a_name = m['awayTeam']['name']
+            h, a = m['homeTeam']['name'], m['awayTeam']['name']
+            h_s, a_s = teams.get(h, {'att':1,'def':1}), teams.get(a, {'att':1,'def':1})
             
-            # Calcolo Forza Attacco vs Difesa
-            h_stats = teams.get(h_name, {'att': 1, 'def': 1})
-            a_stats = teams.get(a_name, {'att': 1, 'def': 1})
-
-            # Gol Attesi (xG)
-            h_xg = h_stats['att'] * a_stats['def'] * league_avg_goals
-            a_xg = a_stats['att'] * h_stats['def'] * league_avg_goals
-
-            # Risultato più probabile (arrotondato)
-            pred_score = f"{round(h_xg)} - {round(a_xg)}"
+            # xG (Expected Goals)
+            h_xg, a_xg = h_s['att'] * a_s['def'] * l_avg, a_s['att'] * h_s['def'] * l_avg
             
-            # Tipologia di giocata
-            if h_xg > a_xg + 0.5: tip, conf = "1", "High"
-            elif a_xg > h_xg + 0.5: tip, conf = "2", "High"
-            else: tip, conf = "X / GG", "Medium"
-
-            conf_class = "prob-high" if conf == "High" else "prob-med"
+            # Probabilità Under 2.5 (Somma di 0-0, 1-0, 0-1, 1-1, 2-0, 0-2)
+            p_under = 0
+            for i in range(3):
+                for j in range(3):
+                    if i + j < 2.5:
+                        p_under += poisson_prob(i, h_xg) * poisson_prob(j, a_xg)
+            
+            # Probabilità BTTS (Both Teams To Score)
+            p_btts = (1 - poisson_prob(0, h_xg)) * (1 - poisson_prob(0, a_xg))
+            
+            tip = "1X" if h_xg > a_xg else "X2"
+            if abs(h_xg - a_xg) < 0.3: tip = "DRAW / X"
 
             html += f"""
-                <tr>
-                    <td><b>{h_name}</b> vs {a_name}</td>
-                    <td><span class='score-tag'>{pred_score}</span></td>
-                    <td>{tip}</td>
-                    <td class='{conf_class}'>{conf}</td>
-                </tr>
+                <div class="match-card">
+                    <div class="teams"><span>{h}</span> vs <span>{a}</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">{tip}</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: {h_xg:.1f} - {a_xg:.1f}</span>
+                    </div>
+                    <div class="stats-row">
+                        <span>Both Teams to Score:</span> <span class="val">{p_btts*100:.1f}%</span>
+                    </div>
+                    <div class="stats-row">
+                        <span>Under 2.5 Goals:</span> <span class="val">{p_under*100:.1f}%</span>
+                    </div>
+                </div>
             """
 
-        html += f"</table><div style='margin-top:30px; font-size:11px; color:#64748b;'>Last Deep Analysis: {m['utcDate'][:10]}</div></div></body></html>"
+        html += "</div></div></body></html>"
 
         with open("index.html", "w", encoding='utf-8') as f:
             f.write(html)
-        print("Success: Quant Analysis Complete!")
+        print("V3.0 Deploy Success!")
 
     except Exception as e:
-        print(f"Error: {e}")
-        exit(1)
+        print(f"Error: {e}"); exit(1)
 
 if __name__ == "__main__":
     main()
