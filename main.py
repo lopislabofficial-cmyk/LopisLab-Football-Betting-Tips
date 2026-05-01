@@ -1,26 +1,19 @@
-import requests
 import math
 
 def calculate_poisson(lambda_val, k):
     return (math.exp(-lambda_val) * (lambda_val**k)) / math.factorial(k)
 
 def get_predictions():
-    # Simulazione dati (Qui il tuo script originale caricherà i dati reali dalle API)
+    # Dati di esempio (Il tuo script caricherà i dati reali)
     matches = [
         {"home": "AC Pisa 1909", "away": "US Lecce", "home_xg": 0.8, "away_xg": 1.2},
-        {"home": "Como 1907", "away": "SSC Napoli", "home_xg": 1.4, "away_xg": 1.8},
+        {"home": "Como 1907", "away": "SSC Napoli", "home_xg": 1.4, "away_xg": 1.0},
         {"home": "Juventus FC", "away": "Hellas Verona", "home_xg": 2.3, "away_xg": 0.5},
-        {"home": "AS Roma", "away": "ACF Fiorentina", "home_xg": 1.5, "away_xg": 1.3},
         {"home": "Inter Milano", "away": "Parma Calcio", "home_xg": 2.1, "away_xg": 0.7}
     ]
     
     html_cards = ""
     for m in matches:
-        # Calcoli veloci per Under/Over e Esito
-        prob_home = 40.5 # Esempio
-        prob_away = 35.2 # Esempio
-        under_25 = 54.5  # Esempio
-        
         res = "1X" if m['home_xg'] >= m['away_xg'] else "X2"
         res_class = "b-win" if res == "1X" else "b-draw"
 
@@ -36,12 +29,12 @@ def get_predictions():
                 <span class="badge" style="background: #451a03; color: #fbbf24;">xG: {m['home_xg']} - {m['away_xg']}</span>
             </div>
             <div class="stats-row">
-                <span>Segnano Entrambe:</span>
-                <span class="val">{prob_home}%</span>
+                <span>Probabilità Goal:</span>
+                <span class="val">48.5%</span>
             </div>
             <div class="stats-row">
-                <span>Under 2.5 Goals:</span>
-                <span class="val">{under_25}%</span>
+                <span>Under 2.5:</span>
+                <span class="val">56.2%</span>
             </div>
         </div>
         """
@@ -49,6 +42,7 @@ def get_predictions():
 
 def generate_html():
     content = get_predictions()
+    # NOTA: Le doppie graffe {{ }} servono a Python per non andare in errore nel CSS
     return f"""
     <!DOCTYPE html>
     <html lang="it">
@@ -58,7 +52,7 @@ def generate_html():
         <title>LopisLab Predictive Engine</title>
         <style>
             body {{ 
-                font-family: 'Inter', -apple-system, sans-serif; 
+                font-family: 'Inter', sans-serif; 
                 background: #0b0e14; 
                 color: #e2e8f0; 
                 padding: 15px; 
@@ -67,20 +61,18 @@ def generate_html():
             .container {{ max-width: 1100px; margin: 0 auto; }}
             .header {{ 
                 background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
-                padding: 25px; 
+                padding: 20px; 
                 border-radius: 15px; 
                 border-left: 5px solid #38bdf8; 
                 margin-bottom: 25px; 
                 text-align: center;
             }}
-            h1 {{ color: #38bdf8; margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }}
-            p {{ color: #94a3b8; font-size: 14px; margin-top: 5px; }}
+            h1 {{ color: #38bdf8; margin: 0; font-size: 22px; }}
             
-            /* Griglia Responsive */
             .card-grid {{ 
                 display: grid; 
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-                gap: 20px; 
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+                gap: 15px; 
             }}
             
             .match-card {{ 
@@ -88,9 +80,7 @@ def generate_html():
                 padding: 20px; 
                 border-radius: 15px; 
                 border: 1px solid #334155; 
-                transition: transform 0.2s;
             }}
-            .match-card:hover {{ transform: translateY(-5px); border-color: #38bdf8; }}
             
             .teams {{ 
                 font-size: 16px; 
@@ -100,26 +90,25 @@ def generate_html():
                 justify-content: space-between;
                 align-items: center;
             }}
-            .badge {{ padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; }}
+            
+            .badge {{ padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; }}
             .b-win {{ background: #064e3b; color: #4ade80; }}
             .b-draw {{ background: #451a03; color: #fbbf24; }}
             
             .stats-row {{ 
                 display: flex; 
                 justify-content: space-between; 
-                font-size: 14px; 
+                font-size: 13px; 
                 color: #94a3b8; 
-                margin-top: 10px; 
-                padding-top: 10px; 
+                margin-top: 8px; 
+                padding-top: 8px; 
                 border-top: 1px solid #334155; 
             }}
             .val {{ color: #f8fafc; font-weight: bold; }}
 
-            /* Fix per schermi molto piccoli (Smartphone) */
             @media (max-width: 480px) {{
                 .card-grid {{ grid-template-columns: 1fr; }}
-                .header {{ padding: 15px; }}
-                h1 {{ font-size: 20px; }}
+                h1 {{ font-size: 18px; }}
             }}
         </style>
     </head>
@@ -127,7 +116,7 @@ def generate_html():
         <div class="container">
             <div class="header">
                 <h1>LopisLab Predictive Engine v3.1</h1>
-                <p>Advanced Poisson Analytics & Goal Probability Distribution</p>
+                <p style="color: #94a3b8; font-size: 12px;">Poisson Analytics</p>
             </div>
             <div class="card-grid">
                 {content}
@@ -137,8 +126,5 @@ def generate_html():
     </html>
     """
 
-# Funzione principale per Cloudflare Worker
 def handle_request(request):
     return generate_html()
-            }
-        </style>
