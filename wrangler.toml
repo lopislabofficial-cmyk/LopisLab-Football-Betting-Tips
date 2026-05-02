@@ -1,0 +1,6 @@
+name = "lopislab-football-tips"
+main = "main.py"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Qui non serve aggiungere altro per ora
