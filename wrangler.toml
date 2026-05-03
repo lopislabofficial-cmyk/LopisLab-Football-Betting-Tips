@@ -1,4 +1,4 @@
 name = "lopislab-football-tips"
 main = "main.py"
 compatibility_date = "2024-05-03"
-compatibility_flags = ["python_workers"]
+compatibility_flags = ["python_workers"] 
