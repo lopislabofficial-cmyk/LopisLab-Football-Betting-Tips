@@ -4,38 +4,45 @@ async def on_fetch(request, env):
     hdrs = Headers.new()
     hdrs.set("Content-Type", "text/html; charset=utf-8")
     
-    # Definiamo i colori e lo stile CSS
     css = (
         "<style>"
-        "body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; text-align: center; }"
-        ".container { max-width: 600px; margin: auto; border: 1px solid #333; border-radius: 15px; padding: 20px; background: #1e1e1e; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }"
-        "h1 { color: #00b894; margin-bottom: 10px; }"
-        ".status { color: #00b894; font-size: 0.9em; margin-bottom: 20px; }"
-        "table { width: 100%; border-collapse: collapse; margin-top: 20px; }"
-        "th, td { padding: 12px; border-bottom: 1px solid #333; text-align: left; }"
-        "th { color: #00b894; font-size: 0.8em; text-transform: uppercase; }"
-        ".quota { color: #ffca28; font-weight: bold; }"
-        "footer { margin-top: 30px; font-size: 0.8em; color: #777; }"
+        "body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; margin: 0; padding: 10px; display: flex; justify-content: center; }"
+        ".card { width: 100%; max-width: 450px; background: #1e293b; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 1px solid #334155; margin-top: 40px; }"
+        "h1 { color: #38bdf8; font-size: 1.5rem; margin-bottom: 5px; text-align: center; }"
+        ".badge { background: #064e3b; color: #34d399; font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 20px; }"
+        ".match-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #334155; }"
+        ".match-row: last-child { border: none; }"
+        ".teams { flex: 1; font-weight: 500; font-size: 0.95rem; }"
+        ".prediction { background: #334155; padding: 6px 12px; border-radius: 8px; color: #fbbf24; font-weight: bold; font-size: 0.85rem; min-width: 60px; text-align: center; }"
+        "footer { text-align: center; margin-top: 20px; font-size: 0.75rem; color: #94a3b8; }"
         "</style>"
     )
 
-    # Definiamo il contenuto della pagina
+    # Content in English with realistic matches
     content = (
-        "<div class='container'>"
-        "<h1>⚽ LopisLab Tips</h1>"
-        "<div class='status'>● SISTEMA IA ATTIVO</div>"
-        "<table>"
-        "<thead><tr><th>Partita</th><th>Pronostico</th><th>Quota</th></tr></thead>"
-        "<tbody>"
-        "<tr><td>Inter - Milan</td><td>1X + Over 1.5</td><td class='quota'>1.45</td></tr>"
-        "<tr><td>Real Madrid - Barca</td><td>Goal</td><td class='quota'>1.55</td></tr>"
-        "<tr><td>Man. City - Arsenal</td><td>1</td><td class='quota'>1.80</td></tr>"
-        "</tbody>"
-        "</table>"
-        "<footer>Aggiornato automaticamente via GitHub Actions</footer>"
+        "<div class='card'>"
+        "<h1>LopisLab Football</h1>"
+        "<div style='text-align:center;'><span class='badge'>● AI SYSTEM LIVE</span></div>"
+        
+        "<div class='match-row'>"
+        "<div class='teams'>Liverpool vs Tottenham</div>"
+        "<div class='prediction'>Home Win</div>"
+        "</div>"
+        
+        "<div class='match-row'>"
+        "<div class='teams'>Bayer Leverkusen vs Roma</div>"
+        "<div class='prediction'>Over 2.5</div>"
+        "</div>"
+        
+        "<div class='match-row'>"
+        "<div class='teams'>Real Madrid vs Bayern</div>"
+        "<div class='prediction'>BTTS - Yes</div>"
+        "</div>"
+        
+        "<footer>v1.2 - Powered by LopisLab Intelligence</footer>"
         "</div>"
     )
 
-    html = f"<html><head><title>LopisLab</title>{css}</head><body>{content}</body></html>"
+    html = f"<!DOCTYPE html><html lang='en'><head><title>LopisLab Tips</title>{css}</head><body>{content}</body></html>"
     
     return Response.new(html, headers=hdrs)
