@@ -1,21 +1,19 @@
-name: Deploy to Cloudflare Pages
+name: Deploy Worker
 
 on:
   push:
     branches:
-      - main  # Assicurati che il tuo ramo principale si chiami 'main', altrimenti scrivi 'master'
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy to Cloudflare Pages
+      - uses: actions/checkout@v4
+      - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # Questo è il comando magico per Pages
-          command: pages deploy ./ --project-name=lopislab-football-tips
+          # Usiamo il comando specifico per i Workers
+          command: deploy
