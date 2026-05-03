@@ -1,13 +1,8 @@
 from js import Response
 
 def on_fetch(request):
-    # Usiamo solo testo sicuro
-    titolo = "LopisLab Football Tips"
-    sottotitolo = "Pronostici IA"
-    match1 = "Inter vs Milan: 1X"
-    match2 = "Real Madrid vs Barcellona: GOAL"
-    
-    # Uniamo tutto in un formato che Cloudflare digerisce bene
-    corpo = f"<h1>{titolo}</h1><p>{sottotitolo}</p><ul><li>{match1}</li><li>{match2}</li></ul>"
-    
-    return Response.new(corpo, headers={"Content-Type": "text/html"})
+    # Scriviamo l'HTML su una riga sola, senza f-strings o variabili intermedie
+    return Response.new(
+        "<h1>LopisLab</h1><p>Sistema Online</p><ul><li>Inter-Milan: 1X</li></ul>", 
+        headers={"Content-Type": "text/html; charset=utf-8"}
+    )
