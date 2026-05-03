@@ -1,7 +1,4 @@
 name = "lopislab-football-tips"
 main = "index.js"
 compatibility_date = "2024-05-03"
-compatibility_flags = ["python_workers"]
-
-[vars]
-# Qui potrai aggiungere variabili in futuro, per ora lasciamo vuoto  
+compatibility_flags = ["python_workers"] 
