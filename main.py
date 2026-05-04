@@ -5,7 +5,7 @@ async def on_fetch(request, env):
     hdrs = Headers.new()
     hdrs.set("Content-Type", "text/html; charset=utf-8")
     
-    API_KEY = "LA_TUA_CHIAVE" # <--- METTI LA TUA CHIAVE
+    API_KEY = "311c7fcfaef748e7a3579601f576ad4d" # <--- METTI LA TUA CHIAVE
     
     # Cerchiamo i match di oggi per i 5 campionati (codici: PL, SA, PD, BL1, FL1)
     # Usiamo un filtro temporale per alleggerire la richiesta
