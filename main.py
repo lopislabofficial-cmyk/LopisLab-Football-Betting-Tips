@@ -47,3 +47,4 @@ async def on_fetch(request, env):
 
     except Exception as e:
         return Response.new(f"Errore tecnico risolto: {str(e)}", status=500)
+                      
