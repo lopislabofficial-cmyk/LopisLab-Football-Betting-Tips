@@ -2,43 +2,50 @@ from js import Response, fetch
 import json
 
 async def on_fetch(request, env):
-    # 1. Configurazione (Sostituisci con la tua vera API Key)
+    # 1. Configurazione (Metti la tua API KEY qui)
     API_KEY = "04bbd211c6fd8dde4d54633de6775a3c"
     
-    # Endpoint per le leghe
     url = "https://v3.football.api-sports.io/leagues"
     headers = {
         "x-apisports-key": API_KEY,
         "x-rapidapi-host": "v3.football.api-sports.io"
     }
 
-    # Definiamo i campionati "miniera d'oro" che vogliamo seguire
+    # Paesi target per la tua "miniera d'oro"
     target_countries = ["Sweden", "Norway", "Brazil", "USA", "Japan", "Colombia", "Nigeria"]
 
     try:
-        # 2. Chiamata all'API
         resp = await fetch(url, headers=headers)
         data = await resp.json()
         
+        # Se l'API restituisce errori o dati vuoti
+        if not data.get('response'):
+            return Response.new("L'API non ha restituito dati. Controlla la tua API Key.")
+
         count = 0
-        # 3. Ciclo sui dati ricevuti
         for item in data['response']:
-            country_name = item['country']['name']
+            country_name = str(item['country']['name'])
             
-            # Se il campionato è in uno dei nostri paesi target e la stagione è quella attuale
             if country_name in target_countries:
                 for season in item['seasons']:
                     if season['current'] is True:
                         league = item['league']
                         
-                        # Scrittura nel database D1 (il tuo binding 'DB')
+                        # TRUCCO TECNICO: Convertiamo tutto in tipi semplici (int, str) 
+                        # per evitare l'errore 'Sequence'
+                        l_id = int(league['id'])
+                        l_name = str(league['name'])
+                        l_type = str(league['type'])
+
+                        # Usiamo bind() passando i valori uno per uno
                         await env.DB.prepare(
                             "INSERT OR REPLACE INTO leagues (league_id, name, country, type) VALUES (?, ?, ?, ?)"
-                        ).bind(league['id'], league['name'], country_name, league['type']).run()
+                        ).bind(l_id, l_name, country_name, l_type).run()
                         
                         count += 1
 
-        return Response.new(f"Successo! Ho trovato e salvato {count} campionati per Lopislab.")
+        return Response.new(f"Successo! Ho trovato e salvato {count} campionati nel database di Lopislab.")
 
     except Exception as e:
-        return Response.new(f"Errore tecnico: {str(e)}", status=500)
+        # Questo ti aiuterà a vedere meglio l'errore se dovesse ricapitare
+        return Response.new(f"Errore tecnico dettagliato: {str(e)}", status=500)
