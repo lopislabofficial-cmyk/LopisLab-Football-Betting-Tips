@@ -31,9 +31,9 @@ async def on_fetch(request, env):
                         l_name = str(item.league.name)
                         l_type = str(item.league.type)
 
-                        # SOLUZIONE: Usiamo la query diretta con i valori inseriti 
-                        # Questo evita il problema del 'Sequence' nel bind
-                        query = f"INSERT OR REPLACE INTO leagues (league_id, name, country, type) VALUES ({l_id}, '{l_name.replace("'", "''")}', '{c_name}', '{l_type}')"
+                        # SOLUZIONE APICI CORRETTA: Raddoppiamo l'apice singolo per SQLite isolando i caratteri speciali
+                        l_name_escaped = l_name.replace("'", "''")
+                        query = f"INSERT OR REPLACE INTO leagues (league_id, name, country, type) VALUES ({l_id}, '{l_name_escaped}', '{c_name}', '{l_type}')"
                         
                         await env.DB.prepare(query).run()
                         
@@ -43,4 +43,3 @@ async def on_fetch(request, env):
 
     except Exception as e:
         return Response.new(f"Errore tecnico: {str(e)}", status=500)
-                      
