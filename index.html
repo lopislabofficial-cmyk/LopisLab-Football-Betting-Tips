@@ -17,7 +17,6 @@
         h1 { color: #38bdf8; margin: 0; font-size: 28px; }
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         
-        /* Modifica per rendere l'intera card un link semantico pulito senza alterare lo stile */
         .match-link { text-decoration: none; color: inherit; display: block; }
         .match-card { background: #1e293b; padding: 20px; border-radius: 15px; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; height: 100%; box-sizing: border-box; }
         .match-link:hover .match-card { transform: translateY(-5px); border-color: #38bdf8; }
@@ -28,6 +27,14 @@
         .b-draw { background: #451a03; color: #fbbf24; }
         .stats-row { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; margin-top: 10px; padding-top: 10px; border-top: 1px solid #334155; }
         .val { color: #f8fafc; font-weight: bold; }
+
+        /* Styles per il Comparatore AGCOM */
+        .comparison-section { background: #1e293b; padding: 25px; border-radius: 20px; margin-bottom: 30px; border: 1px solid #334155; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; font-size: 14px; }
+        .comparison-table th { padding: 12px; color: #94a3b8; border-bottom: 1px solid #334155; }
+        .comparison-table td { padding: 14px 12px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .btn-info { background: #38bdf8; color: #0b0e14; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 12px; display: inline-block; }
+        .legal-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid #334155; font-size: 11px; color: #94a3b8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
     </style>
 </head>
 <body>
@@ -36,8 +43,46 @@
             <h1>LopisLab Predictive Engine v3.0</h1>
             <p>Advanced Poisson Analytics & Goal Probability Distribution</p>
         </div>
+
+        <!-- Sezione Comparatore Conforme AGCOM / Gambling Affiliation -->
+        <div class="comparison-section">
+            <h2 style="color:#38bdf8; font-size:20px; margin:0;">Operator Services & Odds Comparison</h2>
+            <p style="font-size:12px; color:#94a3b8; margin-top:5px;">Informative comparison of odds, statistics, and platform features provided by licensed operators.</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Features & Services</th>
+                        <th>Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight:bold; color:#fff;">Operator Alpha</td>
+                        <td>Football analytics, live odds tracking, and Serie A markets.</td>
+                        <td><a href="#" class="btn-info">More Info</a></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold; color:#fff;">Operator Beta</td>
+                        <td>Poisson probability comparison, statistical insights, and combo markets.</td>
+                        <td><a href="#" class="btn-info">More Info</a></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold; color:#fff;">Operator Gamma</td>
+                        <td>Antepost odds index, real-time data integration, and match stats.</td>
+                        <td><a href="#" class="btn-info">More Info</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="legal-footer">
+                <div>Gaming is strictly restricted to adults (+18). Gambling can cause pathological addiction. Please play responsibly. Terms & Conditions apply.</div>
+                <div style="font-weight:bold; color:#fff; font-size:13px; background:#0f172a; padding:6px 12px; border-radius:6px; border:1px solid #334155;">18+ | ADM Licensed</div>
+            </div>
+        </div>
+
         <div class="card-grid">
-        
             <!-- Pisa vs Lecce -->
             <a href="/?match_id=pisa_lecce" class="match-link">
                 <div class="match-card">
@@ -71,8 +116,8 @@
                     </div>
                 </div>
             </a>
-        
-            <!-- Como vs Napoli -->
+            
+            <!-- Altri Match -->
             <a href="/?match_id=como_napoli" class="match-link">
                 <div class="match-card">
                     <div class="teams"><span>Como 1907</span> vs <span>SSC Napoli</span></div>
@@ -88,160 +133,6 @@
                     </div>
                 </div>
             </a>
-        
-            <!-- Atalanta vs Genoa -->
-            <a href="/?match_id=atalanta_genoa" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Atalanta BC</span> vs <span>Genoa CFC</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.6 - 0.9</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">47.9%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">53.8%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Bologna vs Cagliari -->
-            <a href="/?match_id=bologna_cagliari" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Bologna FC 1909</span> vs <span>Cagliari Calcio</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 1.1</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">50.1%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">53.9%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Sassuolo vs Milan -->
-            <a href="/?match_id=sassuolo_milan" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>US Sassuolo Calcio</span> vs <span>AC Milan</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">X2</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 0.8 - 1.5</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">42.5%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">59.7%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Juventus vs Verona -->
-            <a href="/?match_id=juventus_verona" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Juventus FC</span> vs <span>Hellas Verona FC</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.3 - 0.5</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">34.0%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">48.1%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Inter vs Parma -->
-            <a href="/?match_id=inter_parma" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>FC Internazionale Milano</span> vs <span>Parma Calcio 1913</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.3 - 0.6</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">38.1%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">46.1%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Cremonese vs Lazio -->
-            <a href="/?match_id=cremonese_lazio" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>US Cremonese</span> vs <span>SS Lazio</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">X2</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 0.6 - 1.3</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">33.8%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">68.8%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Roma vs Fiorentina -->
-            <a href="/?match_id=roma_fiorentina" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>AS Roma</span> vs <span>ACF Fiorentina</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 0.8</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">42.8%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">58.9%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Torino vs Sassuolo -->
-            <a href="/?match_id=torino_sassuolo" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Torino FC</span> vs <span>US Sassuolo Calcio</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">X2</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.2 - 1.6</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">56.8%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">45.5%</span>
-                    </div>
-                </div>
-            </a>
-        
-            <!-- Cagliari vs Udinese -->
-            <a href="/?match_id=cagliari_udinese" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Cagliari Calcio</span> vs <span>Udinese Calcio</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.2 - 1.4</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Both Teams to Score:</span> <span class="val">52.8%</span>
-                    </div>
-                    <div class="stats-row">
-                        <span>Under 2.5 Goals:</span> <span class="val">51.5%</span>
-                    </div>
-                </div>
-            </a>
-            
         </div>
     </div>
 </body>
