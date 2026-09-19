@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: # Questo dà il permesso esplicito di scrivere nel repository
+    permissions:
       contents: write
     steps:
       - name: Scarica il codice dal repository
@@ -31,6 +31,6 @@ jobs:
         run: |
           git config --global user.name 'LopisLab-Robot'
           git config --global user.email 'robot@lopislab.com'
-          git add index.html
+          git add .
           git commit -m "Aggiornamento automatico pronostici" || exit 0
           git push
