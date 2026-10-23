@@ -69,19 +69,6 @@ export default {
                 </div>
             </a>
 
-            <!-- Ipswich Town FC vs Nottingham Forest FC -->
-            <a href="/?match_id=ipswich_town_fc_nottingham_forest_fc" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Ipswich Town FC</span> vs <span>Nottingham Forest FC</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.3 - 1.1</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">62.7%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">50.7%</span></div>
-                </div>
-            </a>
-
             <!-- Deportivo Alavés vs Málaga CF -->
             <a href="/?match_id=deportivo_alav_s_m_laga_cf" class="match-link">
                 <div class="match-card">
@@ -92,6 +79,19 @@ export default {
                     </div>
                     <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">65.5%</span></div>
                     <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">44.9%</span></div>
+                </div>
+            </a>
+
+            <!-- Ipswich Town FC vs Nottingham Forest FC -->
+            <a href="/?match_id=ipswich_town_fc_nottingham_forest_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Ipswich Town FC</span> vs <span>Nottingham Forest FC</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.3 - 1.1</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">62.7%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">50.7%</span></div>
                 </div>
             </a>
 
@@ -121,19 +121,6 @@ export default {
                 </div>
             </a>
 
-            <!-- Como 1907 vs US Sassuolo Calcio -->
-            <a href="/?match_id=como_1907_us_sassuolo_calcio" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Como 1907</span> vs <span>US Sassuolo Calcio</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.4 - 0.9</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.4%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">57.3%</span></div>
-                </div>
-            </a>
-
             <!-- Cagliari Calcio vs Bologna FC 1909 -->
             <a href="/?match_id=cagliari_calcio_bologna_fc_1909" class="match-link">
                 <div class="match-card">
@@ -144,6 +131,19 @@ export default {
                     </div>
                     <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">56.6%</span></div>
                     <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">66.9%</span></div>
+                </div>
+            </a>
+
+            <!-- Como 1907 vs US Sassuolo Calcio -->
+            <a href="/?match_id=como_1907_us_sassuolo_calcio" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Como 1907</span> vs <span>US Sassuolo Calcio</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.4 - 0.9</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.4%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">57.3%</span></div>
                 </div>
             </a>
 
@@ -160,19 +160,6 @@ export default {
                 </div>
             </a>
 
-            <!-- FC Augsburg vs 1. FC Union Berlin -->
-            <a href="/?match_id=fc_augsburg_1__fc_union_berlin" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>FC Augsburg</span> vs <span>1. FC Union Berlin</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.1 - 1.5</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">37.3%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">66.9%</span></div>
-                </div>
-            </a>
-
             <!-- RB Leipzig vs SV 07 Elversberg -->
             <a href="/?match_id=rb_leipzig_sv_07_elversberg" class="match-link">
                 <div class="match-card">
@@ -183,6 +170,19 @@ export default {
                     </div>
                     <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">36.9%</span></div>
                     <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">61.4%</span></div>
+                </div>
+            </a>
+
+            <!-- FC Augsburg vs 1. FC Union Berlin -->
+            <a href="/?match_id=fc_augsburg_1__fc_union_berlin" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>FC Augsburg</span> vs <span>1. FC Union Berlin</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-draw">DRAW / X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.1 - 1.5</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">37.3%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">66.9%</span></div>
                 </div>
             </a>
 
