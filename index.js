@@ -43,58 +43,6 @@ export default {
             <p>Advanced Poisson Analytics & Goal Probability Distribution</p>
         </div>
         <div class="card-grid">
-            <!-- VfB Stuttgart vs Borussia Mönchengladbach -->
-            <a href="/?match_id=vfb_stuttgart_borussia_m_nchengladbach" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>VfB Stuttgart</span> vs <span>Borussia Mönchengladbach</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.2 - 0.6</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">65.4%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">55.7%</span></div>
-                </div>
-            </a>
-
-            <!-- Torino FC vs AC Monza -->
-            <a href="/?match_id=torino_fc_ac_monza" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Torino FC</span> vs <span>AC Monza</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">X2</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.3 - 1.9</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">52.7%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">61.8%</span></div>
-                </div>
-            </a>
-
-            <!-- Deportivo Alavés vs Málaga CF -->
-            <a href="/?match_id=deportivo_alav_s_m_laga_cf" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Deportivo Alavés</span> vs <span>Málaga CF</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.6 - 0.6</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">65.5%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">44.9%</span></div>
-                </div>
-            </a>
-
-            <!-- Ipswich Town FC vs Nottingham Forest FC -->
-            <a href="/?match_id=ipswich_town_fc_nottingham_forest_fc" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Ipswich Town FC</span> vs <span>Nottingham Forest FC</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.3 - 1.1</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">62.7%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">50.7%</span></div>
-                </div>
-            </a>
-
             <!-- Aston Villa FC vs Manchester City FC -->
             <a href="/?match_id=aston_villa_fc_manchester_city_fc" class="match-link">
                 <div class="match-card">
@@ -147,16 +95,16 @@ export default {
                 </div>
             </a>
 
-            <!-- 1. FC Köln vs FC Schalke 04 -->
-            <a href="/?match_id=1__fc_k_ln_fc_schalke_04" class="match-link">
+            <!-- 1. FSV Mainz 05 vs SV Werder Bremen -->
+            <a href="/?match_id=1__fsv_mainz_05_sv_werder_bremen" class="match-link">
                 <div class="match-card">
-                    <div class="teams"><span>1. FC Köln</span> vs <span>FC Schalke 04</span></div>
+                    <div class="teams"><span>1. FSV Mainz 05</span> vs <span>SV Werder Bremen</span></div>
                     <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.0 - 1.9</span>
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.2 - 1.5</span>
                     </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">58.0%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">71.4%</span></div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">44.8%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">57.9%</span></div>
                 </div>
             </a>
 
@@ -170,6 +118,19 @@ export default {
                     </div>
                     <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">36.9%</span></div>
                     <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">61.4%</span></div>
+                </div>
+            </a>
+
+            <!-- 1. FC Köln vs FC Schalke 04 -->
+            <a href="/?match_id=1__fc_k_ln_fc_schalke_04" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>1. FC Köln</span> vs <span>FC Schalke 04</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-draw">DRAW / X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.0 - 1.9</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">58.0%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">71.4%</span></div>
                 </div>
             </a>
 
@@ -196,6 +157,45 @@ export default {
                     </div>
                     <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.5%</span></div>
                     <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">52.7%</span></div>
+                </div>
+            </a>
+
+            <!-- Arsenal FC vs Everton FC -->
+            <a href="/?match_id=arsenal_fc_everton_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Arsenal FC</span> vs <span>Everton FC</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-draw">DRAW / X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.0 - 0.7</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">45.1%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">50.1%</span></div>
+                </div>
+            </a>
+
+            <!-- Coventry City FC vs Fulham FC -->
+            <a href="/?match_id=coventry_city_fc_fulham_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Coventry City FC</span> vs <span>Fulham FC</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-draw">DRAW / X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.6 - 1.4</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">43.8%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">55.3%</span></div>
+                </div>
+            </a>
+
+            <!-- Real Racing Club de Santander vs RCD Espanyol de Barcelona -->
+            <a href="/?match_id=real_racing_club_de_santander_rcd_espanyol_de_barcelona" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Real Racing Club de Santander</span> vs <span>RCD Espanyol de Barcelona</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.7 - 0.9</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.4%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">46.5%</span></div>
                 </div>
             </a>
         </div>
