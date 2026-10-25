@@ -43,159 +43,159 @@ export default {
             <p>Advanced Poisson Analytics & Goal Probability Distribution</p>
         </div>
         <div class="card-grid">
-            <!-- Aston Villa FC vs Manchester City FC -->
-            <a href="/?match_id=aston_villa_fc_manchester_city_fc" class="match-link">
+            <!-- FC Internazionale Milano vs ACF Fiorentina -->
+            <a href="/?match_id=fc_internazionale_milano_acf_fiorentina" class="match-link">
                 <div class="match-card">
-                    <div class="teams"><span>Aston Villa FC</span> vs <span>Manchester City FC</span></div>
+                    <div class="teams"><span>FC Internazionale Milano</span> vs <span>ACF Fiorentina</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.3 - 1.2</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">36.7%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">68.1%</span></div>
+                </div>
+            </a>
+
+            <!-- Athletic Club vs Getafe CF -->
+            <a href="/?match_id=athletic_club_getafe_cf" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Athletic Club</span> vs <span>Getafe CF</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 0.9</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">48.7%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">44.1%</span></div>
+                </div>
+            </a>
+
+            <!-- Hull City AFC vs Brentford FC -->
+            <a href="/?match_id=hull_city_afc_brentford_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Hull City AFC</span> vs <span>Brentford FC</span></div>
                     <div style="margin-bottom:15px;">
                         <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 1.1</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.6 - 1.3</span>
                     </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">60.4%</span></div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">36.7%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">64.7%</span></div>
+                </div>
+            </a>
+
+            <!-- Genoa CFC vs Venezia FC -->
+            <a href="/?match_id=genoa_cfc_venezia_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Genoa CFC</span> vs <span>Venezia FC</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.1 - 1.6</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">41.6%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">68.0%</span></div>
+                </div>
+            </a>
+
+            <!-- Crystal Palace FC vs Newcastle United FC -->
+            <a href="/?match_id=crystal_palace_fc_newcastle_united_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Crystal Palace FC</span> vs <span>Newcastle United FC</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 1.0</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">49.0%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">48.8%</span></div>
+                </div>
+            </a>
+
+            <!-- Liverpool FC vs Brighton & Hove Albion FC -->
+            <a href="/?match_id=liverpool_fc_brighton___hove_albion_fc" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Liverpool FC</span> vs <span>Brighton & Hove Albion FC</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">1X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 0.6</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">46.0%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">68.1%</span></div>
+                </div>
+            </a>
+
+            <!-- Atalanta BC vs Frosinone Calcio -->
+            <a href="/?match_id=atalanta_bc_frosinone_calcio" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Atalanta BC</span> vs <span>Frosinone Calcio</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-draw">DRAW / X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 0.8 - 0.7</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">53.6%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">62.4%</span></div>
+                </div>
+            </a>
+
+            <!-- Manchester United FC vs AFC Bournemouth -->
+            <a href="/?match_id=manchester_united_fc_afc_bournemouth" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>Manchester United FC</span> vs <span>AFC Bournemouth</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-win">X2</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.4 - 1.9</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">34.3%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">54.5%</span></div>
+                </div>
+            </a>
+
+            <!-- TSG 1899 Hoffenheim vs Bayer 04 Leverkusen -->
+            <a href="/?match_id=tsg_1899_hoffenheim_bayer_04_leverkusen" class="match-link">
+                <div class="match-card">
+                    <div class="teams"><span>TSG 1899 Hoffenheim</span> vs <span>Bayer 04 Leverkusen</span></div>
+                    <div style="margin-bottom:15px;">
+                        <span class="badge b-draw">DRAW / X</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 1.8</span>
+                    </div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">62.8%</span></div>
                     <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">62.7%</span></div>
                 </div>
             </a>
 
-            <!-- Rayo Vallecano de Madrid vs Elche CF -->
-            <a href="/?match_id=rayo_vallecano_de_madrid_elche_cf" class="match-link">
+            <!-- RC Celta de Vigo vs Real Betis Balompié -->
+            <a href="/?match_id=rc_celta_de_vigo_real_betis_balompi_" class="match-link">
                 <div class="match-card">
-                    <div class="teams"><span>Rayo Vallecano de Madrid</span> vs <span>Elche CF</span></div>
+                    <div class="teams"><span>RC Celta de Vigo</span> vs <span>Real Betis Balompié</span></div>
                     <div style="margin-bottom:15px;">
                         <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.5 - 1.6</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.1 - 1.8</span>
                     </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">37.9%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">51.7%</span></div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">51.6%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">61.7%</span></div>
                 </div>
             </a>
 
-            <!-- Cagliari Calcio vs Bologna FC 1909 -->
-            <a href="/?match_id=cagliari_calcio_bologna_fc_1909" class="match-link">
+            <!-- SC Freiburg vs FC Bayern München -->
+            <a href="/?match_id=sc_freiburg_fc_bayern_m_nchen" class="match-link">
                 <div class="match-card">
-                    <div class="teams"><span>Cagliari Calcio</span> vs <span>Bologna FC 1909</span></div>
+                    <div class="teams"><span>SC Freiburg</span> vs <span>FC Bayern München</span></div>
                     <div style="margin-bottom:15px;">
                         <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.9 - 1.7</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 0.9 - 0.6</span>
                     </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">56.6%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">66.9%</span></div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">48.9%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">42.2%</span></div>
                 </div>
             </a>
 
-            <!-- Como 1907 vs US Sassuolo Calcio -->
-            <a href="/?match_id=como_1907_us_sassuolo_calcio" class="match-link">
+            <!-- Sunderland AFC vs Leeds United FC -->
+            <a href="/?match_id=sunderland_afc_leeds_united_fc" class="match-link">
                 <div class="match-card">
-                    <div class="teams"><span>Como 1907</span> vs <span>US Sassuolo Calcio</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.4 - 0.9</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.4%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">57.3%</span></div>
-                </div>
-            </a>
-
-            <!-- 1. FSV Mainz 05 vs SV Werder Bremen -->
-            <a href="/?match_id=1__fsv_mainz_05_sv_werder_bremen" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>1. FSV Mainz 05</span> vs <span>SV Werder Bremen</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.2 - 1.5</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">44.8%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">57.9%</span></div>
-                </div>
-            </a>
-
-            <!-- RB Leipzig vs SV 07 Elversberg -->
-            <a href="/?match_id=rb_leipzig_sv_07_elversberg" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>RB Leipzig</span> vs <span>SV 07 Elversberg</span></div>
+                    <div class="teams"><span>Sunderland AFC</span> vs <span>Leeds United FC</span></div>
                     <div style="margin-bottom:15px;">
                         <span class="badge b-win">X2</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.2 - 1.7</span>
+                        <span class="badge b-draw" style="margin-left:5px;">xG: 0.9 - 2.0</span>
                     </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">36.9%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">61.4%</span></div>
-                </div>
-            </a>
-
-            <!-- 1. FC Köln vs FC Schalke 04 -->
-            <a href="/?match_id=1__fc_k_ln_fc_schalke_04" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>1. FC Köln</span> vs <span>FC Schalke 04</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 2.0 - 1.9</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">58.0%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">71.4%</span></div>
-                </div>
-            </a>
-
-            <!-- FC Augsburg vs 1. FC Union Berlin -->
-            <a href="/?match_id=fc_augsburg_1__fc_union_berlin" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>FC Augsburg</span> vs <span>1. FC Union Berlin</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.1 - 1.5</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">37.3%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">66.9%</span></div>
-                </div>
-            </a>
-
-            <!-- SC Paderborn 07 vs Hamburger SV -->
-            <a href="/?match_id=sc_paderborn_07_hamburger_sv" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>SC Paderborn 07</span> vs <span>Hamburger SV</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.3 - 1.0</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.5%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">52.7%</span></div>
-                </div>
-            </a>
-
-            <!-- Arsenal FC vs Everton FC -->
-            <a href="/?match_id=arsenal_fc_everton_fc" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Arsenal FC</span> vs <span>Everton FC</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.0 - 0.7</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">45.1%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">50.1%</span></div>
-                </div>
-            </a>
-
-            <!-- Coventry City FC vs Fulham FC -->
-            <a href="/?match_id=coventry_city_fc_fulham_fc" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Coventry City FC</span> vs <span>Fulham FC</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-draw">DRAW / X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.6 - 1.4</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">43.8%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">55.3%</span></div>
-                </div>
-            </a>
-
-            <!-- Real Racing Club de Santander vs RCD Espanyol de Barcelona -->
-            <a href="/?match_id=real_racing_club_de_santander_rcd_espanyol_de_barcelona" class="match-link">
-                <div class="match-card">
-                    <div class="teams"><span>Real Racing Club de Santander</span> vs <span>RCD Espanyol de Barcelona</span></div>
-                    <div style="margin-bottom:15px;">
-                        <span class="badge b-win">1X</span>
-                        <span class="badge b-draw" style="margin-left:5px;">xG: 1.7 - 0.9</span>
-                    </div>
-                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">64.4%</span></div>
-                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">46.5%</span></div>
+                    <div class="stats-row"><span>Both Teams to Score:</span> <span class="val">44.0%</span></div>
+                    <div class="stats-row"><span>Under 2.5 Goals:</span> <span class="val">66.3%</span></div>
                 </div>
             </a>
         </div>
